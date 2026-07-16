@@ -1,0 +1,35 @@
+{
+    "name": "Chaos Tower Defense",
+    "short_name": "Chaos TD",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0f1714",
+    "theme_color": "#0f1714",
+    "description": "Chaos Tower Defense: Merge, Meme, Survive.",
+    "orientation": "landscape",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/chaos-icon-192-v2.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/chaos-icon-512-v2.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/chaos-maskable-192-v2.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/chaos-maskable-512-v2.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
