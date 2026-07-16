@@ -48,6 +48,54 @@
   </style>
 </head>
 <body>
+  <script>
+    (() => {
+      const isLikelyPhone = () => {
+        const coarsePointer = window.matchMedia &&
+          window.matchMedia('(pointer: coarse)').matches;
+        const shortSide = Math.min(window.innerWidth, window.innerHeight);
+        return coarsePointer && shortSide < 620;
+      };
+
+      const requestLandscape = async () => {
+        if (!isLikelyPhone()) {
+          return;
+        }
+        try {
+          if (
+            document.documentElement.requestFullscreen &&
+            !document.fullscreenElement &&
+            window.innerHeight > window.innerWidth
+          ) {
+            await document.documentElement.requestFullscreen({
+              navigationUI: 'hide',
+            });
+          }
+        } catch (_) {
+          // Mobile browsers often require a user tap before fullscreen.
+        }
+        try {
+          if (screen.orientation && screen.orientation.lock) {
+            await screen.orientation.lock('landscape');
+          }
+        } catch (_) {
+          // iOS Safari and some Android browsers ignore orientation locks.
+        }
+      };
+
+      window.addEventListener('load', requestLandscape);
+      window.addEventListener('orientationchange', requestLandscape);
+      document.addEventListener('pointerdown', requestLandscape, {
+        passive: true,
+      });
+      document.addEventListener('touchend', requestLandscape, {
+        passive: true,
+      });
+      document.addEventListener('click', requestLandscape, {
+        passive: true,
+      });
+    })();
+  </script>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
